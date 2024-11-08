@@ -2,20 +2,19 @@ let squares = [];
 let numSquares = 30;
 
 function setup() {
-  createCanvas(1080, 1080);
-  pixelDensity (3)
+  createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
 
   // Inicializar los cuadrados
   for (let i = 0; i < numSquares; i++) {
-    let size = random(20, 60); // Tamaño aleatorio de los cuadrados
+    let size = random(20, 80); // Tamaño aleatorio de los cuadrados
     let x = random(width);     // Posición inicial aleatoria en X
     let y = random(height);    // Posición inicial aleatoria en Y
     let speed = random(0.5, 2); // Velocidad de rotación y movimiento
     squares.push(new Square(x, y, size, speed));
   }
 
-  noFill();
+  noFill(); //sin relleno
 }
 
 function draw() {
@@ -27,7 +26,7 @@ function draw() {
     square.display();
   }
 
-  // Espirales con degradado
+  // Espirales central con degradado
   drawSpirals();
 }
 
@@ -64,9 +63,9 @@ class Square {
       let currentSize = map(sin(frameCount * 0.5 + i), -1, 1, this.size * 0.2, this.size *1.2);
 
       beginShape();
-      for (let angle = 0; angle < 360; angle += 90) { //forma 
+      for (let angle = 0; angle < 360; angle += 90) { //forma de los objetos
         let x = (currentSize / 2) * cos(angle + frameCount / 2); // Movimiento curvado estilo reloj
-        let y = (currentSize / 2) * sin(angle) + sin(angle + frameCount / 3) * 20; // Similar al movimiento del espiral\
+        let y = (currentSize / 2) * sin(angle) + sin(angle + frameCount / 3) * 20; // Similar al movimiento del espiral
         vertex(x, y);
       }
       endShape(CLOSE);
@@ -76,7 +75,7 @@ class Square {
   }
 }
 
-// Función para dibujar espirales con degradado principal
+// Función para dibujar espirales con degradado, objeto principal
 function drawSpirals() {
   translate(width / 2, height / 2);
 
@@ -85,7 +84,7 @@ function drawSpirals() {
   let endColor = color(255);  // Color final (blanco)
 
   // Bucle principal para las espirales
-  for (let i = 0; i < 360; i += 20)  {//separacion
+  for (let i = 0; i < 360; i += 20)  {//separacion de las lineas internas
     let currentRadius = map(sin(frameCount * 0.5 + i), -1, 1, 50, 200); // Variación del radio
     let lerpAmt = map(i, 0, 360, 0, 1);  // Proporción para el degradado
     let currentColor = lerpColor(startColor, endColor, lerpAmt);  // Degradado en el ciclo
@@ -95,7 +94,7 @@ function drawSpirals() {
     
     beginShape();
     // Dibujo de los vértices de la espiral
-    for (let angle = 0; angle < 360; angle += 130) { //forma principal
+    for (let angle = 0; angle < 360; angle += 130) { //forma obj principal
       let x = currentRadius * cos(angle + frameCount / 2); // Movimiento curvado estilo reloj
       let y = currentRadius * sin(angle) + sin(angle + frameCount / 3) * 105; // Define el ángulo de las líneas y el grado 2d
       vertex(x, y);  // Define los vértices de la espiral
