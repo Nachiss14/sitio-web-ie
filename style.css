@@ -146,14 +146,7 @@ p {
     font-size: 20px;
 }
 
-.continuar {
-    grid-area: continuar; /* Si deseas agregar esta área */
-    padding: 20px;
-    background-color: #82666685; /* Fondo blanco */
-    text-align: center;
-    font-weight: bold;
-    max-width: 250px;
-}
+
 
 .ficha a {
     text-decoration: none; /* Quita el subrayado */
